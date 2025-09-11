@@ -71,50 +71,8 @@ if __name__ == "__main__":
 
 
 
-def find_links(file: str) -> list[str]:
-    try:
-        with open(file, "r", encoding="utf-8") as f:
-            html_content = f.read()
-        soup = BeautifulSoup(html_content, "html.parser")
-
-        links = [a.get("href") for a in soup.find_all("a") if a.get("href")]
-        return links
-
-    except FileNotFoundError:
-        return [f"Erreur : le fichier {file} n'existe pas."]
-    except Exception as e:
-        return [f"Erreur lors de la lecture du fichier : {e}"]
 
 
-if __name__ == "__main__":
-    file = "resources/example.html"
-    links = find_links(file)
-    print(links)
-
-
-
-
-def find_elements_with_css_class(file: str, class_name: str) -> list[str]:
-    try:
-        with open(file, "r", encoding="utf-8") as f:
-            html_content = f.read()
-        soup = BeautifulSoup(html_content, "html.parser")
-
-        elements = soup.find_all(class_=class_name)
-
-        return [str(elem) for elem in elements]
-
-    except FileNotFoundError:
-        return [f"Erreur : le fichier {file} n'existe pas."]
-    except Exception as e:
-        return [f"Erreur lors de la lecture du fichier : {e}"]
-
-
-if __name__ == "__main__":
-    file = "resources/example2.html"
-    css_classes = find_elements_with_css_class(file, "info")
-    for class_elem in css_classes:
-        print(class_elem)
 
 
 
